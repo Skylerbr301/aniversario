@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Convite Minecraft</title>
+  <link rel="stylesheet" href="style2.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"/>
+</head>
+<body class="convite">
+  <!-- Blocos flutuantes -->
+  <div class="floating-block block1"></div>
+  <div class="floating-block block2"></div>
+  <div class="floating-block block3"></div>
+
+  <div class="container">
+    <h1 class="titulo typing">🎮 Aniversário do Junior 🎉</h1>
+    <p class="info delay1">📅 <strong>Data:</strong> 21 de Agosto de 2025</p>
+    <p class="info delay2">⏰ <strong>Hora:</strong> 15h</p>
+    <p class="info delay3">📍 <strong>Local:</strong> Jardim das Margaridas - Mundo do Minecraft</p>
+
+    <h3 class="confirmar delay4">Confirme sua presença:</h3>
+    <a href="https://wa.me/5598999999999?text=Olá%2C+quero+confirmar+a+presença+no+aniversário+Minecraft+🎮" target="_blank">
+      <button class="botao delay5">Confirmar via WhatsApp</button>
+    </a>
+  </div>
+
+  <script>
+  const numPixels = 30;
+
+  for (let i = 0; i < numPixels; i++) {
+    const pixel = document.createElement("div");
+    pixel.classList.add("pixel");
+    pixel.style.left = Math.random() * 100 + "vw";
+    pixel.style.animationDelay = Math.random() * 5 + "s";
+    document.body.appendChild(pixel);
+  }
+</script>
+</body>
+</html>

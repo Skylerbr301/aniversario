@@ -1,0 +1,168 @@
+@charset 'UTF-8';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+  background: url('wp9904842-minecraft-survival-series-wallpapers.jpg') no-repeat center center fixed;
+  background-size: cover;
+  overflow-x: hidden;
+  position: relative;
+  animation: entradaTela 1.2s ease both;
+}
+
+.container {
+  text-align: center;
+  padding: 50px 20px;
+  margin: 70px auto;
+  max-width: 600px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 25px #00ff00, 0 0 40px rgba(0, 255, 0, 0.3);
+  animation: fadeInUp 1s ease;
+}
+
+.titulo {
+  color: #00ff00;
+  font-size: 18px;
+  margin-bottom: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #0f0;
+  width: 0;
+  animation: typing 3s steps(30, end) forwards, neonText 1.5s ease-in-out infinite alternate;
+}
+
+.info, .confirmar {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease forwards;
+}
+
+.delay1 { animation-delay: 1s; }
+.delay2 { animation-delay: 1.3s; }
+.delay3 { animation-delay: 1.6s; }
+.delay4 { animation-delay: 2s; }
+.delay5 { animation-delay: 2.3s; }
+
+.confirmar {
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+.botao {
+  background-color: #00a000;
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+  padding: 15px 25px;
+  font-size: 12px;
+  border: 2px solid #00ff00;
+  border-radius: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00ff00, 0 0 20px #0f0 inset;
+  animation: pulse 2s infinite ease-in-out;
+  transition: transform 0.3s;
+}
+
+.botao:hover {
+  transform: scale(1.05);
+  animation: tremor 0.15s ease-in-out infinite;
+}
+
+/* Blocos flutuantes */
+.floating-block {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-image: url('https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/61/Grass_Block_JE3_BE3.png');
+  background-size: cover;
+  opacity: 0.3;
+  animation: float 6s infinite ease-in-out;
+}
+
+.block1 { top: 10%; left: 5%; animation-delay: 0s; }
+.block2 { top: 30%; right: 10%; animation-delay: 2s; }
+.block3 { bottom: 15%; left: 20%; animation-delay: 4s; }
+
+/* ANIMAÇÕES */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 10px #00ff00, 0 0 20px #0f0 inset; }
+  50% { transform: scale(1.05); box-shadow: 0 0 20px #00ff00, 0 0 30px #0f0 inset; }
+  100% { transform: scale(1); box-shadow: 0 0 10px #00ff00, 0 0 20px #0f0 inset; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  body {
+    background: url('wp13179658-minecraft-2024-wallpapers.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  .titulo {
+    font-size: 16px;
+  }
+
+  .botao {
+    font-size: 11px;
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 30px 15px;
+  }
+
+  .titulo {
+    font-size: 14px;
+  }
+
+  .info, .confirmar {
+    font-size: 10px;
+  }
+
+  .botao {
+    font-size: 10px;
+    padding: 10px 15px;
+  }
+}
+
+.pixel {
+    position: fixed;
+    top: -10px;
+    width: 8px;
+    height: 8px;
+    background: #0f0;
+    opacity: 0.3;
+    animation: pixelFall 7s linear infinite;
+    z-index: 1;
+  }
+
+  @keyframes pixelFall {
+    to {
+      transform: translateY(110vh);
+    }
+  }

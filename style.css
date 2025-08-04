@@ -1,0 +1,110 @@
+@charset 'UTF-8';
+
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body.entrada {
+  margin: 0;
+  padding: 0;
+  font-family: 'Press Start 2P', cursive;
+  overflow: hidden;
+  height: 100vh;
+  background: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: zoomIn 1.2s ease-in-out;
+  background: url(wp9904842-minecraft-survival-series-wallpapers.jpg) no-repeat center center fixed;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(1.1);
+    opacity: 0;
+    filter: blur(4px);
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+canvas#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.entrada-container {
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  text-align: center;
+  padding: 30px;
+  border: 4px solid #55ff55;
+  border-radius: 12px;
+  animation: slideUp 1s ease;
+  box-shadow: 0 0 25px #55ff55;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.entrada-container h1 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  animation: vibrate 2s infinite ease-in-out;
+}
+
+@keyframes vibrate {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-2px); }
+  40% { transform: translateX(2px); }
+  60% { transform: translateX(-1px); }
+  80% { transform: translateX(1px); }
+}
+
+.entrada-container p {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.entrada-container button {
+  background-color: #55ff55;
+  border: none;
+  padding: 12px 24px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0px #55ff55; }
+  50% { transform: scale(1.05); box-shadow: 0 0 12px #55ff55; }
+  100% { transform: scale(1); box-shadow: 0 0 0px #55ff55; }
+}
+
+.entrada-container button:hover {
+  background-color: #66ff66;
+  transform: scale(1.07);
+}
+
+/* Fundo gradiente no celular */
+@media (max-width: 600px) {
+  body.entrada {
+    background: url(wp9904842-minecraft-survival-series-wallpapers.jpg) no-repeat center center fixed;
+  }
+}

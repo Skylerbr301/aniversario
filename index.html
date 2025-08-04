@@ -4,38 +4,107 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Convite Minecraft</title>
-  <link rel="stylesheet" href="style2.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
   <link rel="shortcut icon" href="Dakirby309-Simply-Styled-Minecraft.256.png" type="image/x-icon">
 </head>
-<body class="convite">
-  <!-- Blocos flutuantes -->
-  <div class="floating-block block1"></div>
-  <div class="floating-block block2"></div>
-  <div class="floating-block block3"></div>
+<body class="entrada">
+  <!-- Sons -->
+  <audio id="click-sound" src="https://www.myinstants.com/media/sounds/minecraft_click.mp3"></audio>
+  <audio id="hover-sound" src="https://www.myinstants.com/media/sounds/pop.mp3"></audio>
+  <audio id="bg-music" src="https://vgmsite.com/soundtracks/minecraft-volume-alpha/vbgqtkzzub/04.%20Sweden.mp3" loop></audio>
 
-  <div class="container">
-    <h1 class="titulo typing">🎮 Aniversário do Junior 🎉</h1>
-    <p class="info delay1">📅 <strong>Data:</strong> 21 de Agosto de 2025</p>
-    <p class="info delay2">⏰ <strong>Hora:</strong> 15h</p>
-    <p class="info delay3">📍 <strong>Local:</strong> Jardim das Margaridas - Mundo do Minecraft</p>
+  <!-- Canvas partículas -->
+  <canvas id="particles"></canvas>
 
-    <h3 class="confirmar delay4">Confirme sua presença:</h3>
-    <a href="https://wa.me/5585999452500?text=Olá%2C+quero+confirmar+a+presença+no+aniversário+Minecraft+🎮" target="_blank">
-      <button class="botao delay5">Confirmar via WhatsApp</button>
-    </a>
+  <!-- Conteúdo -->
+  <div class="entrada-container">
+    <h1 id="typing-text">Você foi convidado!</h1>
+    <p>Clique no botão para ver o convite do meu aniversário 🎉</p>
+    <button id="btn-convite" onclick="irParaConvite()">Ver Convite</button>
   </div>
 
+  <!-- Scripts -->
   <script>
-  const numPixels = 30;
+    const bgMusic = document.getElementById("bg-music");
+    const clickSound = document.getElementById("click-sound");
+    const hoverSound = document.getElementById("hover-sound");
 
-  for (let i = 0; i < numPixels; i++) {
-    const pixel = document.createElement("div");
-    pixel.classList.add("pixel");
-    pixel.style.left = Math.random() * 100 + "vw";
-    pixel.style.animationDelay = Math.random() * 5 + "s";
-    document.body.appendChild(pixel);
-  }
-</script>
+    // Tocar música ao entrar (volume baixo)
+    window.addEventListener("load", () => {
+      bgMusic.volume = 0.3;
+      bgMusic.play().catch(() => {
+        // Algumas vezes o autoplay só funciona com interação
+        document.addEventListener("click", () => bgMusic.play(), { once: true });
+      });
+    });
+
+    // Som ao passar mouse no botão
+    const btn = document.getElementById("btn-convite");
+    btn.addEventListener("mouseenter", () => {
+      hoverSound.play();
+    });
+
+    // Redirecionar com som e parar a música
+    function irParaConvite() {
+      clickSound.currentTime = 0;
+      clickSound.play();
+      bgMusic.pause();
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 400);
+    }
+
+    // Typing effect no título
+    const texto = "Você foi convidado!";
+    let index = 0;
+    const typing = () => {
+      if (index < texto.length) {
+        document.getElementById("typing-text").innerHTML += texto.charAt(index);
+        index++;
+        setTimeout(typing, 80);
+      }
+    };
+    document.getElementById("typing-text").innerHTML = "";
+    typing();
+
+    // Animação de partículas estilo pixel Minecraft
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particlesArray = [];
+    const colors = ['#55ff55', '#ffaa00', '#00aaff', '#aa00ff'];
+    for (let i = 0; i < 80; i++) {
+      particlesArray.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 6 + 4,
+        speedX: (Math.random() - 0.5) * 1.5,
+        speedY: (Math.random() - 0.5) * 1.5,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(p => {
+        ctx.fillStyle = p.color;
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
 </body>
 </html>

@@ -38,27 +38,60 @@ canvas#particles {
 }
 
 .entrada-container {
-  z-index: 1;
+  position: relative;
+  padding: 30px;
+  border-radius: 12px;
   background: rgba(0, 0, 0, 0.75);
   color: white;
   text-align: center;
-  padding: 30px;
-  border: 4px solid #55ff55;
-  border-radius: 12px;
-  animation: slideUp 1s ease;
   box-shadow: 0 0 25px #55ff55;
+  animation: slideUp 1s ease;
+  
+  /* Importante para que o background não fique atrás da borda */
+  background-clip: padding-box;
+  z-index: 0;
+  border: 4px solid transparent; /* espaço para borda */
+  overflow: visible;
 }
 
-@keyframes slideUp {
+.entrada-container::before {
+  content: "";
+  position: absolute;
+  top: -4px; left: -4px; right: -4px; bottom: -4px;
+  border-radius: 16px; /* maior que o container para acompanhar */
+  padding: 4px; /* para simular largura da borda */
+  background: linear-gradient(
+    270deg,
+    #ff0000,
+    #ff9900,
+    #33ff00,
+    #00ffff,
+    #0033ff,
+    #cc00ff,
+    #ff0000
+  );
+  background-size: 800% 800%;
+  animation: borderMove 5s linear infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+          mask-composite: exclude;
+  z-index: -1;
+}
+
+@keyframes borderMove {
   0% {
-    transform: translateY(30px);
-    opacity: 0;
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
   100% {
-    transform: translateY(0);
-    opacity: 1;
+    background-position: 0% 50%;
   }
 }
+
 
 .entrada-container h1 {
   font-size: 20px;
@@ -108,3 +141,19 @@ canvas#particles {
     background: url(wp9904842-minecraft-survival-series-wallpapers.jpg) no-repeat center center fixed;
   }
 }
+
+.rgb-text {
+  background: linear-gradient(270deg, #ff5e5e, #ffde59, #5eff5e, #5edfff, #c95eff, #ff5e5e);
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rgb-move 8s linear infinite;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.5), 0 0 6px rgba(0, 255, 0, 0.3);
+}
+
+@keyframes rgb-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+

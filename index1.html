@@ -14,28 +14,43 @@
   <div class="floating-block block2"></div>
   <div class="floating-block block3"></div>
 
-  <div class="container">
-    <h1 class="titulo typing">🎮 Aniversário do Junior 🎉</h1>
-    <p class="info delay1">📅 <strong>Data:</strong> 21 de Agosto de 2025</p>
-    <p class="info delay2">⏰ <strong>Hora:</strong> 15h</p>
-    <p class="info delay3">📍 <strong>Local:</strong> Jardim das Margaridas - Mundo do Minecraft</p>
 
-    <h3 class="confirmar delay4">Confirme sua presença:</h3>
+
+  <div class="container">
+    <h1 class="titulo typing" class="info rgb-text">🎮 Aniversário do Daniel Junior 🎉</h1>
+    <p class="info delay1" class="info rgb-text">📅 <strong>Data:</strong> 21 de Agosto de 2025</p>
+    <p class="info delay2" class="info rgb-text">⏰ <strong>Hora:</strong> 14h</p>
+    <p class="info delay3" class="info rgb-text">📍 <strong>Local:</strong> Jardim das Margaridas - Mundo do Minecraft</p>
+
+    <h3 class="confirmar delay4" class="info rgb-text">Confirme sua presença:</h3>
     <a href="https://wa.me/5585999452500?text=Olá%2C+quero+confirmar+a+presença+no+aniversário+Minecraft+🎮" target="_blank">
       <button class="botao delay5">Confirmar via WhatsApp</button>
     </a>
   </div>
 
   <script>
-  const numPixels = 30;
+  const numPixels = 40; // Quantidade de bloquinhos
 
-  for (let i = 0; i < numPixels; i++) {
-    const pixel = document.createElement("div");
-    pixel.classList.add("pixel");
-    pixel.style.left = Math.random() * 100 + "vw";
-    pixel.style.animationDelay = Math.random() * 5 + "s";
-    document.body.appendChild(pixel);
-  }
+    for (let i = 0; i < numPixels; i++) {
+      const pixel = document.createElement("div");
+      pixel.classList.add("pixel");
+
+      // Cores variadas para os pixels tipo ARGB
+      const colors = ['#55ff55', '#ffaa00', '#00aaff', '#aa00ff', '#ff5555', '#55ffff'];
+      pixel.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      // Posiciona aleatório horizontalmente na tela
+      pixel.style.left = Math.random() * 100 + "vw";
+
+      // Duração aleatória para a animação para efeito natural
+      const duration = 5 + Math.random() * 7;
+      pixel.style.animationDuration = duration + "s";
+
+      // Delay aleatório para dispersar os pixels
+      pixel.style.animationDelay = (Math.random() * duration * -1) + "s";
+
+      document.body.appendChild(pixel);
+    }
 </script>
 </body>
 </html>
